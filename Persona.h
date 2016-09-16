@@ -17,5 +17,7 @@ public:
 	void setNombre(string);
 	void setEdad(string);
 	void setID(string);
+	string getNombre();
+	string getID();
 	
 };

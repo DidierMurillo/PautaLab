@@ -26,6 +26,6 @@ string Carta::getColor(){
 
 string Carta::toString(){
 	stringstream ss;
-	ss<<Simbolo<<Numero;
+	ss<<Simbolo<<Numero<<" ";
 	return ss.str();
 }

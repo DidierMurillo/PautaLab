@@ -35,3 +35,11 @@ string Mesa::toString(){
 	ss<<"TipoMesa: "<<TipoMesa<<" NumeroMesa: "<<NumeroMesa<<" "<<this->RepartidorMesa->toString()<<" "<<this->JugadorMesa->toString();
 	return ss.str();
 }
+
+Repartidor* Mesa::getRepartidor(){
+	return this->RepartidorMesa;
+}
+
+Jugador* Mesa::getJugador(){
+	return this->JugadorMesa;
+}

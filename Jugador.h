@@ -22,5 +22,7 @@ public:
 	void setApodo(string);
 	void setDinero(int);
 	string toString();
-	
+	void setMano(Carta*);
+	int CalcularMano();
+	string verMano();
 };

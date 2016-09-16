@@ -20,5 +20,7 @@ public:
 	void setNumeroMesa(string);
 	void setTipoMesa(string);
 	string toString();
+	Jugador* getJugador();
+	Repartidor* getRepartidor();
 	
 };

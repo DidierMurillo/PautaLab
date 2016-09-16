@@ -31,3 +31,11 @@ string Persona::toString(){
  	return ss.str();
 }
 
+string Persona::getNombre(){
+	return this->Nombre;
+}
+
+string Persona::getID(){
+	return this->ID;
+}
+

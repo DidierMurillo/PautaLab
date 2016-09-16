@@ -9,6 +9,7 @@ using std::stringstream;
 
 Repartidor::Repartidor(string Nombre,string Edad,string ID,string Dificultad,int ConteoJuegos,int MontoMaximo):Persona(Nombre,Edad,ID),Dificultad(Dificultad)
 ,ConteoJuegos(ConteoJuegos),MontoMaximo(MontoMaximo){
+	this->BarajaTexas=new Baraja();
 
 }
 

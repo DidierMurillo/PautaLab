@@ -2,6 +2,7 @@
 #include <vector>
 #include "Carta.h"
 using namespace std;
+
 using std::string;
 #pragma once
 
@@ -13,5 +14,6 @@ private:
 public:
 	Baraja();
 	~Baraja();
+	Carta* getCarta();
 	
 };

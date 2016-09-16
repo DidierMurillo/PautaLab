@@ -33,3 +33,40 @@ string Jugador::toString(){
 	ss<<Persona::toString()<<"Lugar: "<<Lugar<<" Apodo:"<<Apodo<<" Total Dinero:"<<Dinero;
 	return ss.str();
 }
+
+void Jugador::setMano(Carta* C){
+ 	this->Mano.push_back(C);
+}
+
+string Jugador::verMano(){
+	stringstream ss;
+	for (int i = 0; i < this->Mano.size(); ++i)
+	{
+		ss<<this->Mano.at(i)->toString();
+	}
+	
+	return ss.str();
+}
+
+int Jugador::CalcularMano(){
+	int Total,Temporal;
+	for (int i = 0; i < this->Mano.size(); ++i)
+	{
+		if (Mano.at(i)->getNumero()=='K')
+		{
+			Temporal=10;
+		}else if(Mano.at(i)->getNumero()=='Q'){
+			Temporal=10;
+		}else if(Mano.at(i)->getNumero()=='J'){
+			Temporal=10;
+		}else if(Mano.at(i)->getNumero()=='A'){
+			Temporal=1;
+		}else{
+			Temporal=Mano.at(i)->getNumero();
+		}
+		Total+=Temporal;
+		Mano.erase(Mano.begin()+i);
+	}
+	return Total;
+
+}

@@ -2,6 +2,7 @@
 #include <vector>
 #include "Baraja.h"
 #include "Persona.h"
+#include "Carta.h"
 using std::string;
 using namespace std;
 #pragma once
@@ -16,6 +17,7 @@ private:
 	int ConteoJuegos;
 	int MontoMaximo;
 	string Dificultad;
+	vector<Carta*> Mano;
 
 public:
 	Repartidor(string,string,string,string,int,int);
@@ -24,4 +26,8 @@ public:
 	void setMontoMaximo(int);
 	void setDificultad(string);	
 	string toString();
+	void setMano(Carta*);
+	int CalcularMano();
+	string verMano();
+	Carta* Repartir();
 };

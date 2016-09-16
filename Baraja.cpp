@@ -4,6 +4,8 @@
 #include <vector>
 using std::string;
 using namespace std;
+#include <time.h>
+#include <stdlib.h>
 
 Baraja::Baraja(){
 	string Simbolo;
@@ -53,6 +55,12 @@ Baraja::Baraja(){
 
 Baraja::~Baraja(){
 
+}
+
+Carta* Baraja::getCarta(){
+	srand(time(NULL));
+	int Temporal;
+	return this->baraja.at(Temporal);
 }
 
 
