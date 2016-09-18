@@ -16,4 +16,5 @@ public:
 	~Baraja();
 	Carta* getCarta();
 	
+	
 };

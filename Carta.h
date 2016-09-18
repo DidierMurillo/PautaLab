@@ -6,14 +6,14 @@ class Carta
 {
 private:
 	string Simbolo;
-	char Numero;
+	int Numero;
 	string Color;
 
 public:
-	Carta(string,char,string);
+	Carta(string,int,string);
 	~Carta();
 	string toString();
-	char getNumero();
+	int getNumero();
 	string getSimbolo();
 	string getColor();
 };

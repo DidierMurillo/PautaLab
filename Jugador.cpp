@@ -25,7 +25,7 @@ void Jugador::setApodo(string Apodo){
 }
 
 void Jugador::setDinero(int Dinero){
-	this->Dinero=Dinero;
+	this->Dinero+=Dinero;
 }
 
 string Jugador::toString(){
@@ -49,23 +49,26 @@ string Jugador::verMano(){
 }
 
 int Jugador::CalcularMano(){
-	int Total,Temporal;
+	int Total=0,Temporal=0;
 	for (int i = 0; i < this->Mano.size(); ++i)
 	{
-		if (Mano.at(i)->getNumero()=='K')
+		if (Mano.at(i)->getNumero()==81)
 		{
 			Temporal=10;
-		}else if(Mano.at(i)->getNumero()=='Q'){
+		}else if(Mano.at(i)->getNumero()==74){
 			Temporal=10;
-		}else if(Mano.at(i)->getNumero()=='J'){
+		}else if(Mano.at(i)->getNumero()==75){
 			Temporal=10;
-		}else if(Mano.at(i)->getNumero()=='A'){
-			Temporal=1;
+		}else if(Mano.at(i)->getNumero()==65){
+			Temporal=11;
 		}else{
 			Temporal=Mano.at(i)->getNumero();
 		}
 		Total+=Temporal;
-		Mano.erase(Mano.begin()+i);
+	}
+	for (int i = 0; i <this->Mano.size()+3 ; ++i)
+	{
+		Mano.pop_back();
 	}
 	return Total;
 

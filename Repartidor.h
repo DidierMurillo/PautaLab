@@ -28,6 +28,8 @@ public:
 	string toString();
 	void setMano(Carta*);
 	int CalcularMano();
+	int CalcularMano(int);
 	string verMano();
 	Carta* Repartir();
+	void setBaraja();
 };

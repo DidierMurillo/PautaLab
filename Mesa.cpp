@@ -32,7 +32,7 @@ void Mesa::setTipoMesa(string TipoMesa){
 
 string Mesa::toString(){
 	stringstream ss;
-	ss<<"TipoMesa: "<<TipoMesa<<" NumeroMesa: "<<NumeroMesa<<" "<<this->RepartidorMesa->toString()<<" "<<this->JugadorMesa->toString();
+	ss<<"TipoMesa: "<<TipoMesa<<" NumeroMesa: "<<NumeroMesa<<"\n "<<this->RepartidorMesa->toString()<<"\n "<<this->JugadorMesa->toString();
 	return ss.str();
 }
 

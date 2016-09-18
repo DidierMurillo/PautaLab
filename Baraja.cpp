@@ -13,7 +13,7 @@ Baraja::Baraja(){
 	string Color;
 	for (int i = 0; i < 4; ++i)
 	{
-		for (int j = 1; j < 14; ++j)
+		for (int j = 1; j < 13; ++j)
 		{
 			if (i==0)
 			{
@@ -35,16 +35,16 @@ Baraja::Baraja(){
 
 			if (j==11)
 			{
-				Numero='J';
+				Numero=74;
 			}else if (j==12)
 			{
-				Numero='Q';
+				Numero=81;
 			}else if (j==13)
 			{
-				Numero='K';
+				Numero=75;
 			}else if (j==1)
 			{
-				Numero='A';
+				Numero=65;
 			}else{
 				Numero=j;
 			}
@@ -58,8 +58,17 @@ Baraja::~Baraja(){
 }
 
 Carta* Baraja::getCarta(){
-	srand(time(NULL));
-	int Temporal;
+	//srand(time(NULL));
+	int Temporal,Random;
+	time_t t;
+    srand((unsigned) time(&t));
+    Random=(1 + rand() % 2);
+    if(Random==1){
+    	Temporal=(1+rand()%26);
+    }else{
+    	Temporal=(25 + rand() % 26);
+    }
+	this->baraja.erase(this->baraja.begin()+Temporal);
 	return this->baraja.at(Temporal);
 }
 

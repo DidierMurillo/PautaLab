@@ -4,7 +4,7 @@ using std::stringstream;
 #include <string>
 using std::string;
 
-Carta::Carta(string Simbolo,char Numero,string Color):Simbolo(Simbolo),Numero(Numero),Color(Color){
+Carta::Carta(string Simbolo,int Numero,string Color):Simbolo(Simbolo),Numero(Numero),Color(Color){
 
 }
 
@@ -16,7 +16,7 @@ string Carta::getSimbolo(){
 	return this->Simbolo;
 }
 
-char Carta::getNumero(){
+int Carta::getNumero(){
 	return this->Numero;
 }
 
@@ -26,6 +26,17 @@ string Carta::getColor(){
 
 string Carta::toString(){
 	stringstream ss;
-	ss<<Simbolo<<Numero<<" ";
+	if(Numero==75){
+		ss<<Simbolo<<"  "<<'J'<<" ";	
+	}else if(Numero==81){
+		ss<<Simbolo<<"  "<<'Q'<<" ";
+	}else if(Numero==65){
+		ss<<Simbolo<<"  "<<'A'<<" ";
+	}else if(Numero==74){
+		ss<<Simbolo<<"  "<<'K'<<" ";
+	}else{
+		ss<<Simbolo<<"  "<<Numero<<" ";
+	}
+	
 	return ss.str();
 }

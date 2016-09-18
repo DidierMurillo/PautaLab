@@ -16,8 +16,17 @@ using std::string;
 int main(){
 	vector<Persona*> ListaPersonas;
 	vector<Mesa*> ListaMesa;
+	Mesa* TemporalMesa;
+	Jugador* TemporalJugador;
+	Repartidor* TemporalRepartidor;
 	string Nombre,Edad,ID;
 	int OpcionPrincipal,OpcionCreacion,OpcionTemporal,OpcionJugador,OpcionAdministrador,OpcionJuego;
+	ListaPersonas.push_back(new Administrador("1","1","1","1","1","1"));
+	ListaPersonas.push_back(new Repartidor("1","1","1","1",1,1));
+	ListaPersonas.push_back(new Jugador("2","2","1","1","1",1));
+	ListaMesa.push_back(new Mesa("2","2"));
+	ListaMesa.at(0)->setRepartidor(dynamic_cast<Repartidor*>(ListaPersonas.at(1)));
+	ListaMesa.at(0)->setJugador(dynamic_cast<Jugador*>(ListaPersonas.at(2)));
 
 	do
 	{
@@ -102,24 +111,116 @@ int main(){
 					{
 						do
 						{
-							cout<<"1-Modificar Personas\n2-Eliminar Personas\n3-Crear Mesas\n4-Modificar Mesas\n5-Borrar Mesas\n6-Salir\nIngrese su opcion:";
+							cout<<"1-Crear Mesas\n2-Modificar Mesas\n3-Borrar Mesas\n4-Salir\nIngrese su opcion:";
 							cin>>OpcionAdministrador;
-							if (OpcionAdministrador==1)
+							if (OpcionAdministrador==3)
 							{
+								for (int i = 0; i < ListaMesa.size(); ++i)
+								{
+									cout<<"Numero de mesa:"<<i<<ListaMesa.at(i)->toString()<<"\n";
+								}
+								cout<<"Ingrese el numero de la mesa que desea elimina:";
+								cin>>OpcionTemporal;
+								ListaMesa.erase(ListaMesa.begin()+OpcionTemporal);
+								cout<<"La mesa a sido eliminada!\n";
+							}else if(OpcionAdministrador==2){
+								for (int i = 0; i < ListaMesa.size(); ++i)
+								{
+									cout<<"Numero de mesa:"<<i<<ListaMesa.at(i)->toString()<<"\n";
+								}
+								cout<<"Ingrese el numero de la mesa que desea Modificar:";
+								cin>>OpcionTemporal;
+								Mesa* TemporalM=ListaMesa.at(OpcionTemporal);
+								cout<<"1-Modificar Numero Mesa\n2-Modficar Tipo Mesa\n3-Modificar Repartidor\n4-Modificar Jugador\nIngrese su opcion: ";
+								int OpcionMesa;
+								string Modificacion;
+								cin>>OpcionMesa;
+								if(OpcionMesa==1){
+									cout<<"Ingrese el nuevo Numero de la mesa:";
+									cin>>Modificacion;
+									TemporalM->setNumeroMesa(Modificacion);
+									cout<<"Se modifico exitosamente!\n";
+								}else if(OpcionMesa==2){
+									cout<<"1- Mesa V.I.P\n2-Mesa Clasica\n3-Mesa Viajero\nIngrese el tipo de mesa:";
+									cin>>OpcionTemporal;
+									if (OpcionTemporal==1)
+									{
+										Modificacion="Mesa V.I.P";
+									}else if(OpcionTemporal==2){
+										Modificacion="Mesa Claseca";
+									}else if(OpcionTemporal==3){
+										Modificacion="Mesa Viajero";
+									}
+									TemporalM->setNumeroMesa(Modificacion);
+									cout<<"Se modifico exitosamente!\n";
+								}else if(OpcionMesa==3){
+									for (int i = 0; i < ListaPersonas.size(); ++i)
+									{
+										if (dynamic_cast<Repartidor*>(ListaPersonas.at(i))!=NULL)
+										{
+										TemporalRepartidor=dynamic_cast<Repartidor*>(ListaPersonas.at(i));
+										cout<<"Numero Repartidor:"<<i<<TemporalRepartidor->toString()<<"\n";
+										}
+									}
+									cout<<"Ingerese el numero de Repartdior a asignar a la mesa:";
+									cin>>OpcionTemporal;
+									TemporalM->setRepartidor(dynamic_cast<Repartidor*>(ListaPersonas.at(OpcionTemporal)));
+									cout<<"Se modifico exitosamente!\n";
+								}else if(OpcionMesa==4){
+									for (int i = 0; i < ListaPersonas.size(); ++i)
+									{
+									if (dynamic_cast<Jugador*>(ListaPersonas.at(i))!=NULL)
+									{
+										TemporalJugador=dynamic_cast<Jugador*>(ListaPersonas.at(i));
+										cout<<"Numero Jugador:"<<i<<TemporalJugador->toString()<<"\n";
+									}
+								}
+								cout<<"Ingerese el numero de Jugador a asignar a la mesa:";
+								cin>>OpcionTemporal;
+								TemporalM->setJugador(dynamic_cast<Jugador*>(ListaPersonas.at(OpcionTemporal)));
+								cout<<"Se modifico exitosamente!\n";
+								}
+							}else if(OpcionAdministrador==1){
+								string TipoMesa,NumeroMesa;
+								cout<<"Ingrese el numero de la mesa";
+								cin>>NumeroMesa;
+								cout<<"1- Mesa V.I.P\n2-Mesa Clasica\n3-Mesa Viajero\nIngrese el tipo de mesa:";
+								cin>>OpcionTemporal;
+								if (OpcionTemporal==1)
+								{
+									TipoMesa="Mesa V.I.P";
+								}else if(OpcionTemporal==2){
+									TipoMesa="Mesa Claseca";
+								}else if(OpcionTemporal==3){
+									TipoMesa="Mesa Viajero";
+								}
+								Mesa* TemporalM=new Mesa(NumeroMesa,TipoMesa);
 								for (int i = 0; i < ListaPersonas.size(); ++i)
 								{
-									cout<<ListaPersonas.at(i)->toString()<<"\n";
-								}		
-								cout<<"Ingrese el numero de la persona que desea modificar:";
+									if (dynamic_cast<Repartidor*>(ListaPersonas.at(i))!=NULL)
+									{
+										TemporalRepartidor=dynamic_cast<Repartidor*>(ListaPersonas.at(i));
+										cout<<"Numero Repartidor:"<<i<<TemporalRepartidor->toString()<<"\n";
+									}
+								}
+								cout<<"Ingerese el numero de Repartdior a asignar a la mesa:";
 								cin>>OpcionTemporal;
-
-							}else if(OpcionAdministrador==2){
+								TemporalM->setRepartidor(dynamic_cast<Repartidor*>(ListaPersonas.at(OpcionTemporal)));
+								for (int i = 0; i < ListaPersonas.size(); ++i)
+								{
+									if (dynamic_cast<Jugador*>(ListaPersonas.at(i))!=NULL)
+									{
+										TemporalJugador=dynamic_cast<Jugador*>(ListaPersonas.at(i));
+										cout<<"Numero Jugador:"<<i<<TemporalJugador->toString()<<"\n";
+									}
+								}
+								cout<<"Ingerese el numero de Jugador a asignar a la mesa:";
+								cin>>OpcionTemporal;
+								TemporalM->setJugador(dynamic_cast<Jugador*>(ListaPersonas.at(OpcionTemporal)));
 								
 							}
-						} while (OpcionAdministrador!=6);
+						} while (OpcionAdministrador!=4);
 					}else if(dynamic_cast<Jugador*>(ListaPersonas.at(i))!=NULL){
-						Mesa* TemporalMesa;
-						Jugador* TemporalJugador;
 						TemporalJugador=dynamic_cast<Jugador*>(TemporalPersona);
 						for (int i = 0; i <ListaMesa.size() ; ++i)
 						{
@@ -131,29 +232,48 @@ int main(){
 						{
 							cout<<"1-Empezar un nuevo juego de BlackJack\n2-Ver Dinero\n3-Salir";
 							cin>>OpcionJugador;
-							do
+							if (OpcionJugador==1)
 							{
 								int Apuesta;
-								cout<<"Ingrese su apuesta para este juego:";
+								cout<<"\nIngrese su apuesta para este juego:";
 								cin>>Apuesta;
 								for (int i = 0; i < 2; ++i)
 									{
 										TemporalJugador->setMano(TemporalMesa->getRepartidor()->Repartir());
 										TemporalMesa->getRepartidor()->setMano(TemporalMesa->getRepartidor()->Repartir());
 									}	
-								TemporalMesa->getRepartidor()->setMano(TemporalMesa->getRepartidor()->Repartir());	
-								cout<<"1-Ver Cartas\n2-Pedir Carta\n3-Mostrar Cartas\nIngrese su opcion:";
-								cin>>OpcionJuego;
-								if(OpcionJuego==1){
-									cout<<TemporalJugador->verMano();
-								}else if(OpcionJuego==2){
-									TemporalJugador->setMano(TemporalMesa->getRepartidor()->Repartir());
-								}else if(OpcionJuego==3){
+								
+								do{
+									cout<<"1-Ver Cartas\n2-Pedir Carta\n3-Mostrar Cartas\nIngrese su opcion:";
+									cin>>OpcionJuego;
+									if(OpcionJuego==1){
 									cout<<TemporalJugador->verMano()<<"\n";
-									cout<<TemporalMesa->getRepartidor()->verMano();
-
-								}
-							} while (OpcionJuego!=4);
+									cout<<TemporalMesa->getRepartidor()->verMano()<<"\n";
+									}else if(OpcionJuego==2){
+									TemporalJugador->setMano(TemporalMesa->getRepartidor()->Repartir());
+										if(TemporalMesa->getRepartidor()->CalcularMano(0)<=15){
+											TemporalMesa->getRepartidor()->setMano(TemporalMesa->getRepartidor()->Repartir());	
+										}
+									}else if(OpcionJuego==3){
+										cout<<TemporalJugador->verMano()<<"\n";
+										cout<<TemporalMesa->getRepartidor()->verMano()<<"\n";
+										int Resul1,Resul2;
+										Resul2=TemporalMesa->getRepartidor()->CalcularMano();
+										Resul1=TemporalJugador->CalcularMano();
+										cout<<Resul1<<"\n"<<Resul2<<"\n";
+										if(Resul2<=Resul1&&Resul1<=21&&Resul2<=21){
+											cout<<"Felicidaddes Haz Ganado este Juego!";
+											TemporalJugador->setDinero(Apuesta*2);
+										}else{
+											cout<<"Haz Perdido este Juego!";
+											TemporalJugador->setDinero(Apuesta*-1);
+										}
+									}
+									TemporalMesa->getRepartidor()->setBaraja();
+								}while(OpcionJuego!=3);		
+							}else if(OpcionJugador==2){
+								TemporalJugador->toString();
+							} 
 						} while (OpcionJugador!=3);
 					}
 				}
